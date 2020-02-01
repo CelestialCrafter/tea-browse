@@ -1,0 +1,35 @@
+{
+  "name": "tea-browse",
+  "version": "0.1.0",
+	"main": "public/electron.js",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "npm run react-build && npm run electron-build",
+    "react-build": "react-scripts build",
+    "electron-build": "electron-builder"
+  },
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "^1.1.4",
+    "electron-is-dev": "^1.1.0"
+  },
+  "devDependencies": {
+    "electron-devtools-installer": "^2.2.4",
+    "electron": "^7.1.10",
+    "electron-builder": "^22.3.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
