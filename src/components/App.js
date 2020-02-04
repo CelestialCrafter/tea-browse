@@ -3,7 +3,6 @@ import * as EventEmmiter from 'events';
 
 import Webpage from './Webpage';
 import Navbar from './Navbar';
-import ErrorBoundary from 'react-error-boundary';
 
 const listenerHost = new EventEmmiter();
 
@@ -16,19 +15,17 @@ const App = () => {
 	//@TODO 6. Update URL Bar and Title on update
 
 	return (
-		<ErrorBoundary>
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-					width: '100%',
-					height: '100%'
-				}}
-			>
-				<Navbar webviewEmmiter={listenerHost} />
-				<Webpage navbarListener={listenerHost} />
-			</div>
-		</ErrorBoundary>
+		<div
+			style={{
+				display: 'flex',
+				flexDirection: 'column',
+				width: '100%',
+				height: '100%'
+			}}
+		>
+			<Navbar webviewEmmiter={listenerHost} />
+			<Webpage navbarListener={listenerHost} />
+		</div>
 	);
 };
 

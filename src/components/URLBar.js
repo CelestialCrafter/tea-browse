@@ -31,6 +31,7 @@ const URLBar = (props) => {
 			listener.emit('loadURL', urlBar.current.value);
 			listener.emit('getURL');
 		});
+		//eslint-disable-next-line
 	}, []);
 
 	return (

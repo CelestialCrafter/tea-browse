@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Tabs from './Tabs';
+import TabList from './TabList';
 import WindowButtons from './WindowButtons';
 import URLBar from './URLBar';
 
@@ -13,7 +13,7 @@ const Navbar = (props) => {
 				borderBottom: '1px solid #c0c0c0'
 			}}
 		>
-			<Tabs webviewEmmiter={props.webviewEmmiter} />
+			<TabList webviewEmmiter={props.webviewEmmiter} />
 			<WindowButtons />
 			<URLBar webviewEmmiter={props.webviewEmmiter} />
 		</div>

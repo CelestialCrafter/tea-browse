@@ -5,4 +5,4 @@ const actions = {
 	GET_TAB: 'GET_TAB'
 };
 
-export default actions;
+module.exports = actions;

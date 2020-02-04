@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "electron-is-dev": "^1.1.0",
+    "immutability-helper": "^3.0.1",
+    "immutable-helper": "0.0.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-error-boundary": "^1.2.5",
