@@ -1,24 +1,40 @@
 {
   "name": "tea-browse",
   "version": "0.1.0",
-	"main": "public/electron.js",
+  "main": "public/electron.js",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "npm run react-build && npm run electron-build",
     "react-build": "react-scripts build",
-    "electron-build": "electron-builder"
+    "electron-build": "electron-builder",
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "dependencies": {
+    "electron-is-dev": "^1.1.0",
+    "immutability-helper": "^3.0.1",
+    "immutable-helper": "0.0.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-error-boundary": "^1.2.5",
+    "react-redux": "^7.1.3",
     "react-scripts": "^3.3.1",
-    "electron-is-dev": "^1.1.0"
+    "redux": "^4.0.5"
   },
   "devDependencies": {
-    "electron-devtools-installer": "^2.2.4",
     "electron": "^7.1.10",
-    "electron-builder": "^22.3.2"
+    "electron-builder": "^22.3.2",
+    "electron-devtools-installer": "^2.2.4",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.2",
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5",
+    "uglify": "^0.1.5"
   },
   "browserslist": {
     "production": [
@@ -27,9 +43,7 @@
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 chrome version"
     ]
   }
 }
