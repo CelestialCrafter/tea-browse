@@ -2,7 +2,7 @@ class Animation {
 	constructor(element) {
 		this.width = element.offsetWidth;
 		this.pos = 10;
-		this.estyl = this.element.style.left;
+		this.estyl = element.style.left;
 		this.interval = setInterval(this.frame(), 1);
 	}
 	frame() {

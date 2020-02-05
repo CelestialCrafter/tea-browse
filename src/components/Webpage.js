@@ -7,7 +7,9 @@ const Webpage = (props) => {
 	const webview = webviewRef.current;
 
 	listener.on('reload', () => webview.reload());
-	listener.on('loadURL', (url) => webview.loadURL(url));
+	listener.on('loadURL', (url) => {
+		webview.loadURL(url);
+	});
 
 	listener.on('forward', () => {
 		if (webview.canGoForward()) webview.goForward();
@@ -22,7 +24,7 @@ const Webpage = (props) => {
 
 	return (
 		<webview
-			ref={webviewRef}
+			ref={props.refr}
 			src="https://github.com"
 			nodeintegration="false"
 			contextisolation="true"

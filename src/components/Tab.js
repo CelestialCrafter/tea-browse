@@ -1,17 +1,26 @@
 import React from 'react';
+
 import styles from './styles/tab';
+import { updateTab } from '../redux/actions.js';
 
 const Tab = (props) => {
 	return (
-		<div ref={props.tab.ref} style={styles.tab}>
-			{console.log(props)}
-			<button style={styles.tabTitle}>{props.tab.title}</button>
+		<div style={styles.tab}>
 			<button
-				onClick={() => props.closeTab(props.tab.id)}
+				style={styles.tabTitle}
+				onClick={() =>
+					props.dispatch(updateTab(props.tab.id, { active: false }))
+				}
+			>
+				{props.tab.title}
+			</button>
+			<button
+				onClick={() => props.closeTab(props.tab.id, props.tab.ref.current)}
 				style={styles.tabClose}
 			>
 				x
 			</button>
+			{props.listener.emit('createView', props.tab.ref)}
 		</div>
 	);
 };
