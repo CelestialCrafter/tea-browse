@@ -8,7 +8,9 @@ const Webpage = (props) => {
 
 	listener.on('reload', () => webviewRef.current.reload());
 	listener.on('loadURL', (url) => webviewRef.current.loadURL(url));
-	listener.on('getURL', () => listener.emit('returnURL', webview.getURL()));
+	listener.on('getURL', () =>
+		listener.emit('returnURL', webviewRef.current.getURL())
+	);
 
 	listener.on('forward', () => {
 		if (webviewRef.current.canGoForward()) webviewRef.current.goForward();
