@@ -1,6 +1,6 @@
 const style = {
-	     light: {
-		           urlBar {
+       light: {
+	       urlBar: {
                        backgroundColor: '#f3f3f3',
                        margin: 10,
                        marginTop: 1,
@@ -8,9 +8,16 @@ const style = {
                        height: '80%',
                        borderRadius: 5,
                        border: 'none',
-                       outline: 'none
+                       outline: 'none'
                },
-               urlBarContainer: { textAlign: 'center', flex: 1, display: 'flex' }
+               urlBarContainer: { textAlign: 'center', flex: 1, display: 'flex' },
+	       wrapper: {
+		       display: 'flex',
+		       flex: 1,
+		       textAlign: 'center',
+		       backgroundColor: '#ffffff',
+		       padding: 5
+	       }
        }
 };
 
