@@ -13,9 +13,9 @@ const Navbar = (props) => {
 				borderBottom: '1px solid #c0c0c0'
 			}}
 		>
-			<TabList webviewEmmiter={props.webviewEmmiter} />
+			<TabList />
 			<WindowButtons />
-			<URLBar webviewEmmiter={props.webviewEmmiter} />
+			<URLBar />
 		</div>
 	);
 };

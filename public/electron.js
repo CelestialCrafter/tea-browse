@@ -8,7 +8,11 @@ const createWindow = () => {
 		width: 900,
 		height: 680,
 		frame: false,
-		webPreferences: { nodeIntegration: true, webviewTag: true }
+		webPreferences: {
+			nodeIntegration: true,
+			webviewTag: true,
+			webSecurity: false
+		}
 	});
 	mainWindow.loadURL(
 		isDev
