@@ -5,36 +5,17 @@ import listener from '../listener';
 const Webpage = (props) => {
 	const webviewRef = React.createRef();
 	const [display, setDisplay] = useState('flex');
-	let webview = webviewRef;
 
-	listener.on('reload', () => {
-		if (props.tabs.find((tab) => tab.id === props.id).active) webview.reload();
-	});
-
-	listener.on('loadURL', (url) => {
-		if (props.tabs.find((tab) => tab.id === props.id).active)
-			webview.loadURL(url);
-	});
-
-	listener.on('getURL', () => {
-		if (props.tabs.find((tab) => tab.id === props.id).active)
-			listener.emit('returnURL', webview.getURL());
-	});
+	listener.on('reload', () => webviewRef.current.reload());
+	listener.on('loadURL', (url) => webviewRef.current.loadURL(url));
+	listener.on('getURL', () => listener.emit('returnURL', webview.getURL()));
 
 	listener.on('forward', () => {
-		if (
-			webview.canGoForward() &&
-			props.tabs.find((tab) => tab.id === props.id).active
-		)
-			webview.goForward();
+		if (webviewRef.current.canGoForward()) webviewRef.current.goForward();
 	});
 
 	listener.on('back', () => {
-		if (
-			webview.canGoBack() &&
-			props.tabs.find((tab) => tab.id === props.id).active
-		)
-			webview.goBack();
+		if (webviewRef.current.canGoBack()) webviewRef.current.goBack();
 	});
 
 	listener.on('switchTab', (id) => {
