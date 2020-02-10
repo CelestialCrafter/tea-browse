@@ -1,30 +1,55 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import listener from '../listener';
 
 const Webpage = (props) => {
-	const listener = props.navbarListener;
 	const webviewRef = React.createRef();
+	let webview = webviewRef;
 
-	const webview = webviewRef.current;
+	listener.on('reload', () => {
+		if (props.tabs.find((tab) => tab.id === props.id).active) webview.reload();
+	});
 
-	listener.on('reload', () => webview.reload());
 	listener.on('loadURL', (url) => {
-		webview.loadURL(url);
-	});
-
-	listener.on('forward', () => {
-		if (webview.canGoForward()) webview.goForward();
-	});
-	listener.on('back', () => {
-		if (webview.canGoBack()) webview.goBack();
+		if (props.tabs.find((tab) => tab.id === props.id).active)
+			webview.loadURL(url);
 	});
 
 	listener.on('getURL', () => {
-		listener.emit('returnURL', webview.getURL());
+		if (props.tabs.find((tab) => tab.id === props.id).active)
+			listener.emit('returnURL', webview.getURL());
 	});
+
+	listener.on('forward', () => {
+		if (
+			webview.canGoForward() &&
+			props.tabs.find((tab) => tab.id === props.id).active
+		)
+			webview.goForward();
+	});
+
+	listener.on('back', () => {
+		if (
+			webview.canGoBack() &&
+			props.tabs.find((tab) => tab.id === props.id).active
+		)
+			webview.goBack();
+	});
+
+	listener.on('switchTab', (id) => {
+		console.log(webview);
+		if (props.id === id) webview.style.display = 'flex';
+		else webview.style.display = 'none';
+	});
+
+	useEffect(() => listener.emit('switchTab', props.id));
+	useEffect(() => {
+		webview = webviewRef.current;
+	}, [webviewRef]);
 
 	return (
 		<webview
-			ref={props.refr}
+			ref={webviewRef}
 			src="https://github.com"
 			nodeintegration="false"
 			contextisolation="true"
@@ -35,4 +60,10 @@ const Webpage = (props) => {
 	);
 };
 
-export default Webpage;
+const mapStateToProps = (state) => {
+	return {
+		tabs: state.tabs
+	};
+};
+
+export default connect(mapStateToProps)(Webpage);

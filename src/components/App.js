@@ -1,13 +1,9 @@
-//eslint-disable
 import React from 'react';
-import * as EventEmmiter from 'events';
 
 import Navbar from './Navbar';
-
 import Webpage from './Webpage';
-import { connect } from 'react-redux';
 
-const listenerHost = new EventEmmiter();
+import { connect } from 'react-redux';
 
 const App = (props) => {
 	//@TODO 3. Hook up that logger thing rexo mentioned
@@ -24,10 +20,10 @@ const App = (props) => {
 				height: '100%'
 			}}
 		>
-			<Navbar webviewEmmiter={listenerHost} />
-			{props.tabs.forEach((tab) => (
-				<Webpage navbarListener={listenerHost} refr={tab.ref} />
-			))}
+			<Navbar />
+			{props.tabs.map((tab) => {
+				return <Webpage id={tab.id} key={tab.id} />;
+			})}
 		</div>
 	);
 };
@@ -38,4 +34,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, null, null, { forwardRef: true })(App);

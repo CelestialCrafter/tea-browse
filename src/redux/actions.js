@@ -1,17 +1,7 @@
-const generateUUID = () => {
-	let dt = new Date().getTime();
-	let uuid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/x/g, (c) => {
-		let r = (dt + Math.random() * 16) % 16 | 0;
-		dt = Math.floor(dt / 16);
-		return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
-	});
-	return uuid;
-};
-
-const addTab = () => {
+const addTab = (listener) => {
 	return {
 		type: actions.ADD_TAB,
-		id: generateUUID()
+		listener
 	};
 };
 
@@ -23,11 +13,15 @@ const removeTab = (id) => {
 };
 
 const updateTab = (id, tab) => {
-	const t2r = {};
+	const t2r = {
+		type: actions.UPDATE_TAB,
+		tab: {}
+	};
 
-	if (tab.url) t2r.url = tab.url;
-	if (tab.title) t2r.title = tab.title;
-	if (tab.active) t2r.active = tab.active;
+	if (tab.tab.url) t2r.tab.url = tab.tab.url;
+	if (tab.tab.title) t2r.tab.title = tab.tab.title;
+	if (tab.tab.active) t2r.tab.active = tab.tab.active;
+	if (tab.tab.ref) t2r.tab.ref = tab.tab.ref;
 
 	return t2r;
 };
