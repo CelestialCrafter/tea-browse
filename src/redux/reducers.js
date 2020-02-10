@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { ADD_TAB, REMOVE_TAB, UPDATE_TAB } from './actions';
+import listener from '../listener';
 
 const defaultTab = {
 	url: 'https://duckduckgo.com',
@@ -26,7 +27,7 @@ const tabs = (state = [], action) => {
 		case ADD_TAB:
 			currenttab.id = generateUUID();
 			currenttab.ref = null;
-			currenttab.listener = action.listener;
+			listener.emit('switchTab', currenttab.id);
 
 			return istate.concat([currenttab]);
 			//eslint-disable-next-line

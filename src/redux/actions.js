@@ -1,7 +1,6 @@
-const addTab = (listener) => {
+const addTab = () => {
 	return {
-		type: actions.ADD_TAB,
-		listener
+		type: actions.ADD_TAB
 	};
 };
 
@@ -20,7 +19,6 @@ const updateTab = (id, tab) => {
 
 	if (tab.tab.url) t2r.tab.url = tab.tab.url;
 	if (tab.tab.title) t2r.tab.title = tab.tab.title;
-	if (tab.tab.active) t2r.tab.active = tab.tab.active;
 	if (tab.tab.ref) t2r.tab.ref = tab.tab.ref;
 
 	return t2r;

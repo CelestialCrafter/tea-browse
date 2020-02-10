@@ -1,14 +1,14 @@
 import React from 'react';
 
 import styles from './styles/tab';
-import { listener } from '../listener';
+import listener from '../listener';
 
 const Tab = (props) => {
 	return (
 		<div style={styles.tab}>
 			<button
 				style={styles.tabTitle}
-				onClick={() => listener.emit('switchTab', props.id)}
+				onClick={() => listener.emit('switchTab', props.tab.id)}
 			>
 				{props.tab.title}
 			</button>

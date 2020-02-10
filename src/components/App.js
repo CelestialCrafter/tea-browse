@@ -7,8 +7,6 @@ import { connect } from 'react-redux';
 
 const App = (props) => {
 	//@TODO 3. Hook up that logger thing rexo mentioned
-	//@TODO 4. Add active tabs
-	//@TODO 5. Different webviews for different tabs
 	//@TODO 6. Update URL Bar and Title on update
 
 	return (

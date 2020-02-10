@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import listener from '../listener';
 
 const Webpage = (props) => {
 	const webviewRef = React.createRef();
+	const [display, setDisplay] = useState('flex');
 	let webview = webviewRef;
 
 	listener.on('reload', () => {
@@ -37,15 +38,9 @@ const Webpage = (props) => {
 	});
 
 	listener.on('switchTab', (id) => {
-		console.log(webview);
-		if (props.id === id) webview.style.display = 'flex';
-		else webview.style.display = 'none';
+		if (props.id === id) setDisplay('flex');
+		else setDisplay('none');
 	});
-
-	useEffect(() => listener.emit('switchTab', props.id));
-	useEffect(() => {
-		webview = webviewRef.current;
-	}, [webviewRef]);
 
 	return (
 		<webview
@@ -53,7 +48,7 @@ const Webpage = (props) => {
 			src="https://github.com"
 			nodeintegration="false"
 			contextisolation="true"
-			style={{ display: 'flex', flex: 1 }}
+			style={{ display, flex: 1 }}
 		>
 			Failed to load Webpage, Sorry!
 		</webview>
