@@ -1,19 +1,16 @@
-//eslint-disable
 import React from 'react';
-import * as EventEmmiter from 'events';
 
 import Navbar from './Navbar';
-
 import Webpage from './Webpage';
+
 import { connect } from 'react-redux';
 
-const listenerHost = new EventEmmiter();
-
 const App = (props) => {
-	//@TODO 3. Hook up that logger thing rexo mentioned
-	//@TODO 4. Add active tabs
-	//@TODO 5. Different webviews for different tabs
-	//@TODO 6. Update URL Bar and Title on update
+	//@TODO 1. Get logo
+	//@TODO 2. Hook up that logger thing rexo mentioned
+	//@TODO 3. Update URL Bar and Title on update
+	//@TODO 4. Styles
+	//@TODO 5. Config
 
 	return (
 		<div
@@ -24,10 +21,10 @@ const App = (props) => {
 				height: '100%'
 			}}
 		>
-			<Navbar webviewEmmiter={listenerHost} />
-			{props.tabs.forEach((tab) => (
-				<Webpage navbarListener={listenerHost} refr={tab.ref} />
-			))}
+			<Navbar />
+			{props.tabs.map((tab) => {
+				return <Webpage id={tab.id} key={tab.id} />;
+			})}
 		</div>
 	);
 };
@@ -38,4 +35,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, null, null, { forwardRef: true })(App);

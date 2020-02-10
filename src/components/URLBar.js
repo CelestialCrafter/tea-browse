@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import RBFButtons from './RBFButtons';
+
+import { connect } from 'react-redux';
+import listener from '../listener';
 
 const styles = {
 	urlBar: {
@@ -16,23 +19,11 @@ const styles = {
 };
 
 const URLBar = (props) => {
-	const urlBar = React.createRef();
-	const listener = props.webviewEmmiter;
+	const [url, setUrl] = useState('');
 
 	const back = () => listener.emit('back');
 	const forward = () => listener.emit('forward');
 	const reload = () => listener.emit('reload');
-
-	useEffect(() => {
-		urlBar.current.focus();
-
-		urlBar.current.addEventListener('keydown', (e) => {
-			if (e.keyCode !== 13) return;
-			listener.emit('loadURL', urlBar.current.value);
-			listener.emit('getURL');
-		});
-		//eslint-disable-next-line
-	}, []);
 
 	return (
 		<div
@@ -46,10 +37,16 @@ const URLBar = (props) => {
 		>
 			<RBFButtons back={back} forward={forward} reload={reload} />
 			<div style={styles.urlBarContainer}>
-				<input style={styles.urlBar} ref={urlBar} />
+				<input
+					style={styles.urlBar}
+					onChange={(e) => setUrl(e.target.value)}
+					onKeyPress={(e) => {
+						if (e.key === 'Enter') listener.emit('loadURL', url);
+					}}
+				/>
 			</div>
 		</div>
 	);
 };
 
-export default URLBar;
+export default connect()(URLBar);
