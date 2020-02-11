@@ -11,13 +11,14 @@ const { BrowserWindow } = window.require('electron').remote;
 const TabList = (props) => {
 	const closeTab = (id, element) => {
 		props.dispatch(removeTab(id));
-		console.log(props.tabs.length);
 		//I dont know why 0 doesnt work, I know .length is 1 based but noone counts 0 as 1
 		if (props.tabs.length === 1) BrowserWindow.getFocusedWindow().close();
 	};
 
-	//eslint-disable-next-line
-	useEffect(() => props.dispatch(addTab()), []);
+	useEffect(() => {
+		props.dispatch(addTab());
+		//eslint-disable-next-line
+	}, []);
 
 	return (
 		<div style={styles.tabList}>
@@ -26,7 +27,7 @@ const TabList = (props) => {
 			))}
 
 			<button
-				style={styles.pageCommands}
+				style={{ ...styles.pageCommands }}
 				onClick={() => {
 					props.dispatch(addTab());
 				}}

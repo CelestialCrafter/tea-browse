@@ -12,10 +12,10 @@ const RBFButtons = (props) => {
 			<button onClick={props.reload} style={styles.pageCommands}>
 				<Reload />
 			</button>
-			<button onClick={props.reload} style={styles.pageCommands}>
+			<button onClick={props.back} style={styles.pageCommands}>
 				<Back />
 			</button>
-			<button onClick={props.reload} style={styles.pageCommands}>
+			<button onClick={props.forward} style={styles.pageCommands}>
 				<Forward />
 			</button>
 		</div>
