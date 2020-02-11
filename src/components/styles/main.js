@@ -7,13 +7,15 @@ const styles = {
 			height: '100%'
 		},
 		navbarContainer: {
-			flexDirection: 'column',
-			backgroundColor: '#f3f3f3',
-			borderBottom: '1px solid #c0c0c0'
+			flexDirection: 'column'
 		},
 		pageCommands: {
 			border: 'none',
 			backgroundColor: 'inherit'
+		},
+		svgIcon: {
+			fillWidth: '1em',
+			strokeWidth: '1em'
 		},
 		windowControlsContainer: {
 			margin: 5,
@@ -23,7 +25,34 @@ const styles = {
 			display: 'flex'
 		}
 	},
-	dark: {}
+	dark: {
+		appContainer: {
+			display: 'flex',
+			flexDirection: 'column',
+			width: '100%',
+			height: '100%'
+		},
+		navbarContainer: {
+			flexDirection: 'column'
+		},
+		pageCommands: {
+			border: 'none',
+			backgroundColor: 'inherit'
+		},
+		svgIcon: {
+			fill: '#ffffff',
+			stroke: '#ffffff',
+			fillWidth: '1em',
+			strokeWidth: '1em'
+		},
+		windowControlsContainer: {
+			margin: 5,
+			right: 0,
+			top: 0,
+			position: 'absolute',
+			display: 'flex'
+		}
+	}
 };
 
 module.exports = styles.light;

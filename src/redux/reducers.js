@@ -3,7 +3,7 @@ import { ADD_TAB, REMOVE_TAB, UPDATE_TAB } from './actions';
 import listener from '../listener';
 
 const defaultTab = {
-	url: 'https://duckduckgo.com',
+	url: 'https://google.com',
 	title: 'New Tab',
 	active: true
 };
