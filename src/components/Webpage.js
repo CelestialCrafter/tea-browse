@@ -25,6 +25,8 @@ const Webpage = (props) => {
 		else setDisplay('none');
 	});
 
+	// Context: style={{ display, flex: 1 }}
+	// Not moved to stylesheet because `display` is dynamic
 	return (
 		<webview
 			ref={webviewRef}

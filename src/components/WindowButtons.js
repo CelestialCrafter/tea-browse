@@ -5,17 +5,11 @@ import Close from './icons/Close';
 import Minimize from './icons/Minimize';
 import Maximize from './icons/Maximize';
 
+import styles from './styles/main';
+
 const WindowButtons = () => {
 	return (
-		<div
-			style={{
-				margin: 5,
-				right: 0,
-				top: 0,
-				position: 'absolute',
-				display: 'flex'
-			}}
-		>
+		<div style={styles.windowControlsContainer}>
 			<Drag />
 			<Close />
 			<Minimize />

@@ -1,4 +1,4 @@
-const style = {
+const styles = {
 	light: {
 		tab: {
 			backgroundColor: '#ffffff',
@@ -22,11 +22,13 @@ const style = {
 			flexDirection: 'row',
 			listStyle: 'none',
 			left: 0
+		},
+		pageCommands: {
+			border: 'none',
+			backgroundColor: 'inherit'
 		}
-	}
+	},
+	dark: {}
 };
 
-style.dark = style.light;
-
-module.exports = style.dark;
-module.exports = style.light;
+module.exports = styles.light;

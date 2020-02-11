@@ -1,9 +1,10 @@
 import React from 'react';
 
-import styles from './styles/tab';
 import listener from '../listener';
+import styles from './styles/tab';
 
 const Tab = (props) => {
+	console.log(styles);
 	return (
 		<div style={styles.tab}>
 			<button

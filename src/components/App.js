@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Webpage from './Webpage';
 
 import { connect } from 'react-redux';
+import styles from './styles/main';
 
 const App = (props) => {
 	//@TODO 1. Get logo
@@ -13,14 +14,7 @@ const App = (props) => {
 	//@TODO 5. Config
 
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexDirection: 'column',
-				width: '100%',
-				height: '100%'
-			}}
-		>
+		<div style={styles.appContainer}>
 			<Navbar />
 			{props.tabs.map((tab) => {
 				return <Webpage id={tab.id} key={tab.id} />;
