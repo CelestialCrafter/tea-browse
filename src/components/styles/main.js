@@ -55,4 +55,7 @@ const styles = {
 	}
 };
 
-module.exports = styles.light;
+if (localStorage.getItem('theme') === 'light') module.exports = styles.light;
+if (localStorage.getItem('theme') === 'dark') module.exports = styles.dark;
+// Default
+if (!localStorage.getItem('theme')) module.exports = styles.light;
