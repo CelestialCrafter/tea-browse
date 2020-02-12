@@ -4,15 +4,11 @@ import TabList from './TabList';
 import WindowButtons from './WindowButtons';
 import URLBar from './URLBar';
 
+import styles from './styles/main';
+
 const Navbar = (props) => {
 	return (
-		<div
-			style={{
-				flexDirection: 'column',
-				backgroundColor: '#f3f3f3',
-				borderBottom: '1px solid #c0c0c0'
-			}}
-		>
+		<div style={styles.navbarContainer}>
 			<TabList />
 			<WindowButtons />
 			<URLBar />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Tab from './Tab';
@@ -6,8 +6,19 @@ import Tab from './Tab';
 import { addTab, removeTab } from '../redux/actions';
 import styles from './styles/tab';
 
+const { BrowserWindow } = window.require('electron').remote;
+
 const TabList = (props) => {
-	const closeTab = (id, element) => props.dispatch(removeTab(id));
+	const closeTab = (id, element) => {
+		props.dispatch(removeTab(id));
+		//I dont know why 0 doesnt work, I know .length is 1 based but noone counts 0 as 1
+		if (props.tabs.length === 1) BrowserWindow.getFocusedWindow().close();
+	};
+
+	useEffect(() => {
+		props.dispatch(addTab());
+		//eslint-disable-next-line
+	}, []);
 
 	return (
 		<div style={styles.tabList}>
@@ -16,7 +27,7 @@ const TabList = (props) => {
 			))}
 
 			<button
-				style={{ border: 'none', backgroundColor: 'inherit' }}
+				style={{ ...styles.pageCommands }}
 				onClick={() => {
 					props.dispatch(addTab());
 				}}

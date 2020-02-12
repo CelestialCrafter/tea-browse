@@ -19,7 +19,8 @@ module.exports = {
 	rules: {
 		'no-eval': 'error',
 		'import/first': 'error',
-		'prettier/prettier': 'error'
+		'prettier/prettier': 'error',
+		'strict': ['error', 'global']
 	},
 	extends: ['react-app', 'eslint:recommended', 'plugin:prettier/recommended']
 };

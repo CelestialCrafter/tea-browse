@@ -8,9 +8,6 @@ const Webpage = (props) => {
 
 	listener.on('reload', () => webviewRef.current.reload());
 	listener.on('loadURL', (url) => webviewRef.current.loadURL(url));
-	listener.on('getURL', () =>
-		listener.emit('returnURL', webviewRef.current.getURL())
-	);
 
 	listener.on('forward', () => {
 		if (webviewRef.current.canGoForward()) webviewRef.current.goForward();
@@ -25,10 +22,12 @@ const Webpage = (props) => {
 		else setDisplay('none');
 	});
 
+	// Context: style={{ display, flex: 1 }}
+	// Not moved to stylesheet because `display` is dynamic
 	return (
 		<webview
 			ref={webviewRef}
-			src="https://github.com"
+			src="https://google.com"
 			nodeintegration="false"
 			contextisolation="true"
 			style={{ display, flex: 1 }}

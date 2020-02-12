@@ -1,7 +1,7 @@
 import React from 'react';
 
-import styles from './styles/tab';
 import listener from '../listener';
+import styles from './styles/tab';
 
 const Tab = (props) => {
 	return (
