@@ -1,7 +1,6 @@
 const styles = {
-	light: {
+	main: {
 		tab: {
-			backgroundColor: '#ffffff',
 			margin: 10,
 			marginRight: 5,
 			padding: 10,
@@ -11,58 +10,70 @@ const styles = {
 		},
 		tabTitle: {
 			border: 'none',
-			backgroundColor: '#ffffff'
+			backgroundColor: 'inherit'
 		},
 		tabClose: {
 			border: 'none',
-			backgroundColor: 'inherit',
-			color: '#000000'
+			backgroundColor: 'inherit'
 		},
 		tabList: {
 			display: 'flex',
 			flexDirection: 'row',
 			listStyle: 'none',
-			left: 0,
-			backgroundColor: '#f3f3f3'
-		},
-		pageCommands: {
-			border: 'none',
-			backgroundColor: 'inherit',
-			color: '#000000'
-		}
-	},
-	dark: {
-		tab: {
-			backgroundColor: '#242424',
-			margin: 10,
-			marginRight: 5,
-			padding: 10,
-			borderRadius: 5,
-			marginBottom: 5,
-			position: 'relative'
-		},
-		tabTitle: {
-			border: 'none',
-			backgroundColor: 'inherit',
-			color: '#ffffff'
-		},
-		tabClose: {
-			border: 'none',
-			backgroundColor: 'inherit',
-			color: '#ffffff'
-		},
-		tabList: {
-			display: 'flex',
-			flexDirection: 'row',
-			listStyle: 'none',
-			left: 0,
-			backgroundColor: '#1c1c1c'
+			left: 0
 		},
 		pageCommands: {
 			backgroundColor: 'inherit',
-			color: '#ffffff',
 			border: 'none'
 		}
+	}
+};
+
+styles.light = {
+	...styles.main,
+	tab: {
+		...styles.main.tab,
+		backgroundColor: '#ffffff'
+	},
+	tabTitle: {
+		...styles.main.tabTitle,
+		backgroundColor: '#ffffff'
+	},
+	tabClose: {
+		...styles.main.tabClose,
+		color: '#000000'
+	},
+	tabList: {
+		...styles.main.tabList,
+		backgroundColor: '#f3f3f3'
+	},
+	pageCommands: {
+		...styles.main.pageCommands,
+		color: '#000000'
+	}
+};
+
+styles.dark = {
+	...styles.main,
+	tab: {
+		...styles.main.tab,
+		backgroundColor: '#242424'
+	},
+	tabTitle: {
+		...styles.main.tabTitle,
+		color: '#ffffff'
+	},
+	tabClose: {
+		...styles.main.tabClose,
+		color: '#ffffff'
+	},
+	tabList: {
+		...styles.main.tabList,
+		backgroundColor: '#1c1c1c'
+	},
+	pageCommands: {
+		...styles.main.pageCommands,
+		color: '#ffffff'
 	}
 };
 

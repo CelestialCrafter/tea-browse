@@ -10,13 +10,11 @@ const defaultTab = {
 
 const generateUUID = () => {
 	let dt = new Date().getTime();
-	let uuid = 'xxxxxxxx-xxxx-xxxx-nnnn-xxxxxxxxxxxx'
-		.replace(/x/g, (c) => {
-			let r = (dt + Math.random() * 16) % 16 | 0;
-			dt = Math.floor(dt / 16);
-			return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
-		})
-		.replace(/n/g, Math.floor(Math.random() * 10));
+	let uuid = 'xxxxxxxx-xxxx-xxxx-tuid-xxxxxxxxxxxx'.replace(/x/g, (c) => {
+		let r = (dt + Math.random() * 16) % 16 | 0;
+		dt = Math.floor(dt / 16);
+		return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+	});
 	return uuid;
 };
 
