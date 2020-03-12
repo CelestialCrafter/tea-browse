@@ -1,11 +1,14 @@
 const styles = {
 	main: {
 		tab: {
-			margin: 10,
-			marginRight: 5,
+			display: 'flex',
+			flex: 1,
+			maxWidth: '6.5em',
+			justifyContent: 'center',
+			alignItems: 'center',
 			padding: 10,
+			margin: 5,
 			borderRadius: 5,
-			marginBottom: 5,
 			position: 'relative'
 		},
 		tabTitle: {
@@ -79,5 +82,5 @@ styles.dark = {
 
 if (localStorage.getItem('theme') === 'light') module.exports = styles.light;
 if (localStorage.getItem('theme') === 'dark') module.exports = styles.dark;
-//Default
+// Default
 if (!localStorage.getItem('theme')) module.exports = styles.light;

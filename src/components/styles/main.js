@@ -22,7 +22,9 @@ const styles = {
 			right: 0,
 			top: 0,
 			position: 'absolute',
-			display: 'flex'
+			display: 'flex',
+			flex: 1,
+			maxWidth: '10%'
 		}
 	}
 };
@@ -47,5 +49,5 @@ styles.dark = {
 
 if (localStorage.getItem('theme') === 'light') module.exports = styles.light;
 if (localStorage.getItem('theme') === 'dark') module.exports = styles.dark;
-//Default
+// Default
 if (!localStorage.getItem('theme')) module.exports = styles.light;

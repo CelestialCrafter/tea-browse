@@ -6,14 +6,12 @@ import URLBar from './URLBar';
 
 import styles from './styles/main';
 
-const Navbar = (props) => {
-	return (
-		<div style={styles.navbarContainer}>
-			<TabList />
-			<WindowButtons />
-			<URLBar />
-		</div>
-	);
-};
+const Navbar = (props) => (
+	<div style={styles.navbarContainer}>
+		<TabList />
+		<WindowButtons />
+		<URLBar />
+	</div>
+);
 
 export default Navbar;

@@ -1,15 +1,11 @@
-const addTab = () => {
-	return {
-		type: actions.ADD_TAB
-	};
-};
+const addTab = () => ({
+	type: actions.ADD_TAB
+});
 
-const removeTab = (id) => {
-	return {
-		type: actions.REMOVE_TAB,
-		id
-	};
-};
+const removeTab = (id) => ({
+	type: actions.REMOVE_TAB,
+	id
+});
 
 const updateTab = (id, tab) => {
 	const t2r = {

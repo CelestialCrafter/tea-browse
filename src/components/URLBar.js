@@ -1,26 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import RBFButtons from './RBFButtons';
 
-import { connect } from 'react-redux';
 import listener from '../listener';
 import styles from './styles/url';
 
 const URLBar = (props) => {
-	const [url, setUrl] = useState('');
+	const input = React.createRef();
 
 	const back = () => listener.emit('back');
 	const forward = () => listener.emit('forward');
 	const reload = () => listener.emit('reload');
 
+	const formatLink = (link) => {
+		const ltr = link.indexOf('://') === -1 ? `http://${link}` : link;
+		return ltr;
+	};
+
 	return (
 		<div style={styles.urlContainer}>
 			<RBFButtons back={back} forward={forward} reload={reload} />
+
 			<div style={styles.urlBarContainer}>
 				<input
+					ref={input}
 					style={styles.urlBar}
-					onChange={(e) => setUrl(e.target.value)}
+					className="urlBar"
 					onKeyPress={(e) => {
-						if (e.key === 'Enter') listener.emit('loadURL', url);
+						if (e.key === 'Enter') {
+							e.target.value = formatLink(e.target.value);
+							listener.emit('loadURL', formatLink(e.target.value));
+						}
 					}}
 				/>
 			</div>

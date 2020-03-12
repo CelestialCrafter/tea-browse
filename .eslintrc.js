@@ -15,12 +15,11 @@ module.exports = {
 		ecmaVersion: 2018,
 		sourceType: 'module'
 	},
-	plugins: ['react', 'import', 'prettier'],
+	plugins: ['react', 'prettier'],
 	rules: {
 		'no-eval': 'error',
-		'import/first': 'error',
 		'prettier/prettier': 'error',
-		'strict': ['error', 'global']
+		strict: ['error', 'global']
 	},
 	extends: ['react-app', 'eslint:recommended', 'plugin:prettier/recommended']
 };

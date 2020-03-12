@@ -7,13 +7,30 @@
 				width: 100%;
 				height: 100%;
 			}
-			.svg-icon {
+			.svgIcon{
 			  width: 20px;
 			  height: 20px;
 			}
 
+			@keyframes loadSpin {
+				0%   {transform: rotate(0deg);}
+				25%  {transform: rotate(72deg);}
+				50%  {transform: rotate(144deg);}
+				75%  {transform: rotate(216deg);}
+				100% {transform: rotate(360deg);}
+			}
+
+			.load-spin {
+				animation: loadSpin 1s infinite;
+			}
+
 			button {
 				outline: none
+			}
+
+			.urlBar:focus {
+				box-shadow: 0px 0px 3px 3px rgba(100, 100, 100, 0.65);
+				z-index: 2;
 			}
 		</style>
 

@@ -11,13 +11,14 @@ const { BrowserWindow } = window.require('electron').remote;
 const TabList = (props) => {
 	const closeTab = (id, element) => {
 		props.dispatch(removeTab(id));
-		//I dont know why 0 doesnt work, I know .length is 1 based but noone counts 0 as 1
+
+		// I dont know why 0 doesnt work, 1 works so i guess we are going with 1
 		if (props.tabs.length === 1) BrowserWindow.getFocusedWindow().close();
 	};
 
 	useEffect(() => {
 		props.dispatch(addTab());
-		//eslint-disable-next-line
+		// eslint-disable-next-line
 	}, []);
 
 	return (
@@ -30,6 +31,15 @@ const TabList = (props) => {
 				style={{ ...styles.pageCommands }}
 				onClick={() => {
 					props.dispatch(addTab());
+					props.dispatch(addTab());
+					props.dispatch(addTab());
+					props.dispatch(addTab());
+					props.dispatch(addTab());
+					props.dispatch(addTab());
+					props.dispatch(addTab());
+					props.dispatch(addTab());
+					props.dispatch(addTab());
+					props.dispatch(addTab());
 				}}
 			>
 				+
@@ -38,10 +48,8 @@ const TabList = (props) => {
 	);
 };
 
-const mapStateToProps = (state) => {
-	return {
-		tabs: state.tabs
-	};
-};
+const mapStateToProps = (state) => ({
+	tabs: state.tabs
+});
 
 export default connect(mapStateToProps)(TabList);

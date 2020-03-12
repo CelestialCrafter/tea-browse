@@ -1,67 +1,78 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import cuid from 'cuid';
 import listener from '../listener';
 
-const Webpage = (props) => {
-	const generateUUID = () => {
-		let dt = new Date().getTime();
-		let uuid = 'xxxxxxxx-xxxx-xxxx-tuid-xxxxxxxxxxxx'.replace(/x/g, (c) => {
-			let r = (dt + Math.random() * 16) % 16 | 0;
-			dt = Math.floor(dt / 16);
-			return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+class Webpage extends Component {
+	constructor(props) {
+		super(props);
+
+		// @TODO Set up Incognito mode (Based on the startup arguments)
+		this.state = {
+			flex: true,
+			incognito: false
+		};
+
+		this.webview = null;
+	}
+
+	componentDidMount() {
+		this.webview = document.querySelector(`.${this.props.id}`);
+
+		listener.on('reload', () => {
+			if (this.state.flex) this.webview.reload();
 		});
-		return uuid;
-	};
 
-	const webviewRef = React.createRef();
-	const [display, setDisplay] = useState('flex');
+		listener.on('loadURL', (url) => {
+			if (this.state.flex) this.webview.loadURL(url);
+		});
 
-	listener.on('reload', () => {
-		if (display === 'flex') webviewRef.current.reload();
-	});
+		listener.on('forward', () => {
+			if (this.webview.canGoForward() && this.state.flex) {
+				this.webview.goForward();
+			}
+		});
 
-	listener.on('loadURL', (url) => {
-		if (display === 'flex') webviewRef.current.loadURL(url);
-	});
+		listener.on('back', () => {
+			if (this.webview.canGoBack() && this.state.flex) this.webview.goBack();
+		});
 
-	listener.on('forward', () => {
-		if (webviewRef.current.canGoForward() || display === 'flex')
-			webviewRef.current.goForward();
-	});
+		listener.on('switchTab', (id) => {
+			if (this.props.id === id) this.setState({ flex: true });
+			else this.setState({ flex: false });
+		});
 
-	listener.on('back', (id = 'active') => {
-		if (webviewRef.current.canGoBack() || display === 'flex')
-			webviewRef.current.goBack();
-	});
+		this.webview.addEventListener('did-start-loading', () =>
+			listener.emit('startLoad', this.props.id)
+		);
 
-	listener.on('switchTab', (id) => {
-		if (props.id === id) setDisplay('flex');
-		else setDisplay('none');
-	});
+		this.webview.addEventListener('did-stop-loading', () =>
+			listener.emit('stopLoad', this.props.id)
+		);
+	}
 
-	const incognito = false;
-	//@TODO Set up Incognito mode (Based on the startup arguments)
+	render() {
+		// Context: style={{ display, flex: 1 }}
+		// Not moved to stylesheet because `display` is dynamic
+		const display = this.state.flex ? 'flex' : 'none';
 
-	// Context: style={{ display, flex: 1 }}
-	// Not moved to stylesheet because `display` is dynamic
-	return (
-		<webview
-			ref={webviewRef}
-			src="https://google.com"
-			nodeintegration="false"
-			contextisolation="true"
-			style={{ display, flex: 1 }}
-			partition={incognito ? generateUUID() : 'persistent:webview'}
-		>
-			Failed to load Webpage, Sorry!
-		</webview>
-	);
-};
+		return (
+			<webview
+				className={this.props.id}
+				src="https://google.com"
+				nodeintegration="false"
+				contextisolation="true"
+				style={{ display, flex: 1 }}
+				partition={this.state.incognito ? cuid() : 'persistent:webview'}
+			>
+				Failed to load Webpage, Sorry!
+			</webview>
+		);
+	}
+}
 
-const mapStateToProps = (state) => {
-	return {
-		tabs: state.tabs
-	};
-};
+const mapStateToProps = (state) => ({
+	tabs: state.tabs
+});
 
 export default connect(mapStateToProps)(Webpage);
