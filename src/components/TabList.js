@@ -29,18 +29,7 @@ const TabList = (props) => {
 
 			<button
 				style={{ ...styles.pageCommands }}
-				onClick={() => {
-					props.dispatch(addTab());
-					props.dispatch(addTab());
-					props.dispatch(addTab());
-					props.dispatch(addTab());
-					props.dispatch(addTab());
-					props.dispatch(addTab());
-					props.dispatch(addTab());
-					props.dispatch(addTab());
-					props.dispatch(addTab());
-					props.dispatch(addTab());
-				}}
+				onClick={() => props.dispatch(addTab())}
 			>
 				+
 			</button>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './styles/main';
+import '../styles/RBFButtons.sass';
 import {
 	IoIosArrowBack as Back,
 	IoIosArrowForward as Forward
@@ -9,13 +9,13 @@ import { MdAutorenew as Reload } from 'react-icons/md';
 
 const RBFButtons = (props) => (
 	<div>
-		<button onClick={props.reload} style={styles.pageCommands}>
+		<button onClick={props.reload} className={'RBFButtonsIcon'}>
 			<Reload />
 		</button>
-		<button onClick={props.back} style={styles.pageCommands}>
+		<button onClick={props.back} className={'RBFButtonsIcon'}>
 			<Back />
 		</button>
-		<button onClick={props.forward} style={styles.pageCommands}>
+		<button onClick={props.forward} className={'RBFButtonsIcon'}>
 			<Forward />
 		</button>
 	</div>

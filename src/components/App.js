@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 import Webpage from './Webpage';
 import { IconContext } from 'react-icons';
 
-import styles from './styles/main';
+import '../styles/App.sass';
 
 const App = (props) => {
 	// @TODO 1. Get logo
@@ -14,7 +14,7 @@ const App = (props) => {
 
 	return (
 		<IconContext.Provider value={{ className: 'svgIcon' }}>
-			<div style={styles.appContainer}>
+			<div className={'appContainer'}>
 				<Navbar />
 				{props.tabs.map((tab) => (
 					<Webpage id={tab.id} url={tab.url} key={tab.id} />

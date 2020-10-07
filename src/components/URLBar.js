@@ -1,16 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RBFButtons from './RBFButtons';
 
 import listener from '../listener';
 import styles from './styles/url';
 
 const URLBar = (props) => {
 	const input = React.createRef();
-
-	const back = () => listener.emit('back');
-	const forward = () => listener.emit('forward');
-	const reload = () => listener.emit('reload');
 
 	const formatLink = (link) => {
 		const ltr = link.indexOf('://') === -1 ? `http://${link}` : link;
@@ -19,8 +14,6 @@ const URLBar = (props) => {
 
 	return (
 		<div style={styles.urlContainer}>
-			<RBFButtons back={back} forward={forward} reload={reload} />
-
 			<div style={styles.urlBarContainer}>
 				<input
 					ref={input}

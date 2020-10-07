@@ -7,7 +7,7 @@ import {
 } from 'react-icons/io';
 import { MdRemove as Minimize } from 'react-icons/md';
 
-import styles from './styles/main';
+import '../styles/WindowButtons.sass';
 const { BrowserWindow } = window.require('electron').remote;
 
 const maxMin = () => {
@@ -17,7 +17,18 @@ const maxMin = () => {
 };
 
 const WindowButtons = () => (
-	<div style={styles.windowControlsContainer}>
+	<div
+		className={'windowButtonsContainer'}
+		style={{
+			margin: 5,
+			right: 0,
+			top: 0,
+			position: 'absolute',
+			display: 'flex',
+			flex: 1,
+			maxWidth: '10%'
+		}}
+	>
 		<div onClick={maxMin}>
 			<Maximize />
 		</div>

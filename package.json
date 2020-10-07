@@ -17,6 +17,7 @@
     "electron-is-dev": "^1.1.0",
     "immutability-helper": "^3.0.1",
     "immutable-helper": "0.0.5",
+    "node-sass": "^4.13.1",
     "prettify-json": "^1.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
